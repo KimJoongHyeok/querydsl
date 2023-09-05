@@ -18,7 +18,6 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 class QuerydslApplicationTests {
 
-//	@Autowired
 	@PersistenceContext
 	EntityManager em;
 
