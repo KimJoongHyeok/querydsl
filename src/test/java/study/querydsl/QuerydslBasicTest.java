@@ -191,7 +191,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void aggregation() throws Exception {
+    public void aggregation() {
 
         List<Tuple> result = queryFactory
                 .select(
@@ -218,7 +218,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void group() throws Exception {
+    public void group() {
         List<Tuple> result = queryFactory
                 .select(team.name, member.age.avg())
                 .from(member)
@@ -242,7 +242,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void join() throws Exception {
+    public void join() {
         List<Member> result = queryFactory
                 .selectFrom(member)
                 .join(member.team, team)
@@ -261,7 +261,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void theta_join() throws Exception {
+    public void theta_join() {
         em.persist(new Member("teamA"));
         em.persist(new Member("teamB"));
 
@@ -283,7 +283,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void join_on_filtering() throws Exception {
+    public void join_on_filtering() {
         List<Tuple> result = queryFactory
                 .select(member, team)
                 .from(member)
@@ -304,7 +304,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void join_on_no_relation() throws Exception {
+    public void join_on_no_relation() {
         em.persist(new Member("teamA"));
         em.persist(new Member("teamB"));
         em.persist(new Member("teamC"));
@@ -324,7 +324,7 @@ public class QuerydslBasicTest {
     EntityManagerFactory emf;
 
     @Test
-    public void fetchJoinNo() throws Exception {
+    public void fetchJoinNo() {
         em.flush();
         em.clear();
 
@@ -338,7 +338,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void fetchJoinUse() throws Exception {
+    public void fetchJoinUse() {
         em.flush();
         em.clear();
 
@@ -358,7 +358,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void subQuery() throws Exception {
+    public void subQuery() {
 
         QMember memberSub = new QMember("memberSub");
 
@@ -381,7 +381,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void subQueryGoe() throws Exception {
+    public void subQueryGoe() {
 
         QMember memberSub = new QMember("memberSub");
 
@@ -404,7 +404,7 @@ public class QuerydslBasicTest {
      * @throws Exception
      */
     @Test
-    public void subQueryIn() throws Exception {
+    public void subQueryIn() {
 
         QMember memberSub = new QMember("memberSub");
 
@@ -423,7 +423,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void selectSubQuery() throws Exception {
+    public void selectSubQuery() {
 
         QMember memberSub = new QMember("memberSub");
 
@@ -441,7 +441,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void basicCase() throws Exception {
+    public void basicCase() {
 
         List<String> result = queryFactory
                 .select(member.age
@@ -457,7 +457,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void complexCase() throws Exception {
+    public void complexCase() {
         List<String> result = queryFactory
                 .select(new CaseBuilder()
                         .when(member.age.between(0, 20)).then("0~20살")
@@ -472,7 +472,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void constant() throws Exception {
+    public void constant() {
         List<Tuple> result = queryFactory
                 .select(member.username, Expressions.constant("A"))
                 .from(member)
@@ -484,7 +484,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void concat() throws Exception {
+    public void concat() {
 
         //{username}_{age}
         List<String> result = queryFactory
@@ -499,7 +499,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void simpleProjections() throws Exception {
+    public void simpleProjections() {
 
         List<String> result = queryFactory
                 .select(member.username)
@@ -512,7 +512,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void tupleProjections() throws Exception {
+    public void tupleProjections() {
         List<Tuple> result = queryFactory
                 .select(member.username, member.age)
                 .from(member)
